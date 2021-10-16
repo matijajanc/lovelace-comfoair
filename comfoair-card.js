@@ -14,6 +14,7 @@ class ComfoAirCard extends LitElement {
   }
 
   render() {
+    console.log(this.hass.states[this.config.entity]);
     return html`
     <ha-card>
     <div class="container">
@@ -26,8 +27,8 @@ class ComfoAirCard extends LitElement {
                   <div class="fan-state"><ha-icon icon="mdi:speedometer"></ha-icon> ${Math.trunc(this.hass.states['sensor.comfoairq_exhaust_fan_speed'].state)} rpm</div>
               </div>
               <div class="flex-col-main">
-                  <div>${this.hass.states[this.config.entity].attributes.temperature}°C</div>
-                  <div><ha-icon class="spin" icon="mdi:${({'auto': 'fan', 'off': 'fan-off', low: 'fan-speed-1', medium: 'fan-speed-2', high: 'fan-speed-3'}[this.hass.states[this.config.entity].attributes.fan_mode])}"></ha-icon></div> 
+                  <div>${this.hass.states['sensor.comfoairq_exhaust_airflow'].state}m³/h</div>
+                  <div><ha-icon class="spin" icon="mdi:${({'auto': 'fan', 'off': 'fan-off', low: 'fan-speed-1', medium: 'fan-speed-2', high: 'fan-speed-3'}[this.hass.states[this.config.entity].attributes.speed])}"></ha-icon></div> 
               </div>
               <div class="flex-col-in">
                   <div>${this.hass.states['sensor.comfoairq_inside_temperature'].state}°C</div>
